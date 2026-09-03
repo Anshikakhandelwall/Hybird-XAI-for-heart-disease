@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Heart, Menu, X, Activity } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 const navLinks = [
   { label: 'Home', href: '#home' },
@@ -13,6 +14,7 @@ const navLinks = [
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20)
@@ -66,13 +68,13 @@ export default function Navbar() {
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-3">
             <button
-              onClick={() => handleNavClick('#cta')}
+              onClick={() => navigate('/login')}
               className="px-4 py-2 text-sm font-semibold text-warm-gray hover:text-charcoal transition-colors"
             >
               Login
             </button>
             <button
-              onClick={() => handleNavClick('#cta')}
+              onClick={() => navigate('/register')}
               className="btn-primary text-sm py-2.5 px-5"
             >
               <Heart size={14} />
@@ -109,13 +111,13 @@ export default function Navbar() {
           ))}
           <div className="pt-3 pb-1 flex flex-col gap-2">
             <button
-              onClick={() => handleNavClick('#cta')}
+              onClick={() => { setMobileOpen(false); navigate('/login') }}
               className="w-full text-center py-3 text-sm font-semibold text-warm-gray border border-beige rounded-xl hover:bg-cream transition-all"
             >
               Login
             </button>
             <button
-              onClick={() => handleNavClick('#cta')}
+              onClick={() => { setMobileOpen(false); navigate('/register') }}
               className="w-full btn-primary justify-center"
             >
               <Heart size={14} />
