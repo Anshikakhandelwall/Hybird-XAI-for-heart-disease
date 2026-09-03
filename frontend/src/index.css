@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+    background-color: #FAF8F3;
+    color: #292522;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-coral text-white font-semibold rounded-xl hover:bg-coral-dark transition-all duration-200 shadow-warm-sm hover:shadow-warm hover:-translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-transparent text-charcoal font-semibold rounded-xl border border-beige-dark hover:bg-cream hover:border-coral/30 transition-all duration-200;
+  }
+
+  .card-warm {
+    @apply bg-white rounded-3xl border border-beige shadow-warm-sm hover:shadow-warm transition-all duration-300;
+  }
+
+  .section-label {
+    @apply inline-block text-xs font-bold tracking-widest uppercase text-coral mb-3;
+  }
+
+  .section-heading {
+    @apply text-3xl md:text-4xl font-extrabold text-charcoal leading-tight;
+  }
+
+  .section-subtext {
+    @apply text-warm-gray text-lg leading-relaxed;
+  }
+}
+
+@layer utilities {
+  .text-gradient-coral {
+    background: linear-gradient(135deg, #D9534F, #E9A17C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-warm {
+    background: linear-gradient(135deg, #FAF8F3 0%, #F3EEE5 100%);
+  }
+
+  .bg-gradient-coral {
+    background: linear-gradient(135deg, #D9534F 0%, #E9A17C 100%);
+  }
+}
+
+/* Scroll animation utility */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ECG animation */
+.ecg-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: ecgDraw 3s ease-in-out infinite;
+}
+
+@keyframes ecgDraw {
+  0% { stroke-dashoffset: 1000; opacity: 0.3; }
+  30% { opacity: 1; }
+  70% { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: -200; opacity: 0; }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F3EEE5;
+}
+::-webkit-scrollbar-thumb {
+  background: #D9534F40;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D9534F80;
+}
